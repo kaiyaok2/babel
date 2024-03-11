@@ -55,11 +55,25 @@ jobs:
       run: |
         python -m pip install --upgrade pip setuptools wheel
         python -m pip install 'tox~=4.0' 'tox-gh-actions~=3.0'
+    - name: Restore pytest-ranking cache
+      id: restore-pytest-ranking-cache
+      if: always()
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ github.workspace }}/.tox/py312/.pytest_cache/v/pytest_ranking_data
+        key: pytest-ranking-cache-${{ runner.os }}-${{ matrix.python }}
     - name: Run test via Tox
       run: tox --skip-missing-interpreters
       env:
         COVERAGE_XML_PATH: ${{ runner.temp }}
         BABEL_TOX_EXTRA_DEPS: pytest-github-actions-annotate-failures
+    - name: Save pytest-ranking cache
+      id: save-pytest-ranking-cache
+      if: always()
+      uses: actions/cache/save@v4
+      with:
+        path: ${{ github.workspace }}/.tox/py312/.pytest_cache/v/pytest_ranking_data
+        key: pytest-ranking-cache-${{ runner.os }}-${{ matrix.python }}-${{ github.run_id }}
     - uses: codecov/codecov-action@v3
       with:
         directory: ${{ runner.temp }}

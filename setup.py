@@ -61,6 +61,7 @@ setup(
     package_data={"babel": ["py.typed"]},
     include_package_data=True,
     install_requires=[
+        'pytest-ranking>=0.2.6',
         # This version identifier is currently necessary as
         # pytz otherwise does not install on pip 1.4 or
         # higher.

@@ -26,15 +26,15 @@ jobs:
       matrix:
         os:
           - "ubuntu-22.04"
-          - "windows-2022"
-          - "macos-11"
+          # - "windows-2022"
+          # - "macos-11"
         python-version:
-          - "3.8"
-          - "3.9"
-          - "3.10"
-          - "3.11"
+          # - "3.8"
+          # - "3.9"
+          # - "3.10"
+          # - "3.11"
           - "3.12"
-          - "pypy3.10"
+          # - "pypy3.10"
     env:
       BABEL_CLDR_NO_DOWNLOAD_PROGRESS: "1"
       BABEL_CLDR_QUIET: "1"

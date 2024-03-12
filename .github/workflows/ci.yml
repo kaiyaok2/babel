@@ -74,6 +74,13 @@ jobs:
       with:
         path: ${{ github.workspace }}/.tox/py312/.pytest_cache/v/pytest_ranking_data
         key: pytest-ranking-cache-${{ runner.os }}-${{ matrix.python }}-${{ github.run_id }}
+    - name: Create ZIP archive
+      run: zip -r directory.zip ${{ github.workspace }}/.tox/py312/.pytest_cache/v/pytest_ranking_data
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: directory.zip
     - uses: codecov/codecov-action@v3
       with:
         directory: ${{ runner.temp }}

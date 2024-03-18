@@ -20,7 +20,6 @@ def test_locale_provides_access_to_cldr_locale_data():
     locale = Locale('en', 'US')
     assert locale.display_name == 'English (United States)'
     assert locale.number_symbols["latn"]['decimal'] == '.'
-    assert 1 == 2
 
 
 def test_locale_repr():
